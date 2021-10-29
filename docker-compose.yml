@@ -1,0 +1,16 @@
+version: '3'
+services:
+  api:
+    privileged: true
+    image: gleandroj/laravel:slim
+    working_dir: /home/deploy/apps
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 500M
+        reservations:
+          cpus: '0.1'
+          memory: 200M
+    volumes:
+      - .:/home/deploy/apps:Z

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rap2hpoutre\FastExcel\Providers;
+namespace Gleandroj\FastExcel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -30,7 +30,7 @@ class FastExcelServiceProvider extends ServiceProvider
                 $data = collect($data);
             }
 
-            return new \Rap2hpoutre\FastExcel\FastExcel($data);
+            return new \Gleandroj\FastExcel\FastExcel($data);
         });
     }
 }
