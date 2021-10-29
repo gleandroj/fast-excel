@@ -85,7 +85,7 @@ trait Exportable
      * @throws \Box\Spout\Writer\Exception\WriterNotOpenedException
      * @throws \Box\Spout\Common\Exception\SpoutException
      */
-    private function exportOrDownload($path, $function, callable $callback = null)
+    private function exportOrDownload($path, $function, callable $callback = null, $chunk = 1000)
     {
         if (Str::endsWith($path, Type::CSV)) {
             $writer = WriterEntityFactory::createCSVWriter();
@@ -106,7 +106,7 @@ trait Exportable
 
         foreach ($data as $key => $collection) {
             if ($collection instanceof Builder) {
-                $this->writeRowsFromQueryChunked($writer, $collection, $callback);
+                $this->writeRowsFromQueryChunked($writer, $collection, $callback, $chunk);
             } else if ($collection instanceof Collection) {
                 $this->writeRowsFromCollection($writer, $collection, $callback);
             } elseif ($collection instanceof Generator) {
@@ -215,9 +215,9 @@ trait Exportable
         }
     }
 
-    private function writeRowsFromQueryChunked($writer, Builder $builder, ?callable $callback = null)
+    private function writeRowsFromQueryChunked($writer, Builder $builder, ?callable $callback = null, $chunk = 1000)
     {
-        $builder->chunk(1000, function ($rows) use ($callback, $writer) {
+        $builder->chunk($chunk, function ($rows) use ($callback, $writer) {
             foreach ($rows as $key => $item) {
                 // Apply callback
                 if ($callback) {
