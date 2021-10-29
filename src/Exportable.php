@@ -44,9 +44,9 @@ trait Exportable
      *
      * @return string
      */
-    public function export($path, callable $callback = null)
+    public function export($path, callable $callback = null, $chunk = 1000)
     {
-        self::exportOrDownload($path, 'openToFile', $callback);
+        self::exportOrDownload($path, 'openToFile', $callback, $chunk);
 
         return realpath($path) ?: $path;
     }
