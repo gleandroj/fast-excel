@@ -1,6 +1,6 @@
 <?php
 
-namespace Rap2hpoutre\FastExcel;
+namespace Gleandroj\FastExcel;
 
 use Illuminate\Support\Collection;
 

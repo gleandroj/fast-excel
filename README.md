@@ -2,12 +2,12 @@
 <img src="https://user-images.githubusercontent.com/36028424/40173202-9a03d68a-5a03-11e8-9968-6b7e3b4f8a1b.png">
 </p>
 
-[![Version](https://poser.pugx.org/rap2hpoutre/fast-excel/version?format=flat)](https://packagist.org/packages/rap2hpoutre/fast-excel)
-[![License](https://poser.pugx.org/rap2hpoutre/fast-excel/license?format=flat)](https://packagist.org/packages/rap2hpoutre/fast-excel)
-[![Build Status](https://travis-ci.org/rap2hpoutre/fast-excel.svg?branch=master)](https://travis-ci.org/rap2hpoutre/fast-excel)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rap2hpoutre/fast-excel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/rap2hpoutre/fast-excel/?branch=master)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bae32d91556e461fb7d0fd93495ec6aa)](https://www.codacy.com/gh/rap2hpoutre/fast-excel/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rap2hpoutre/fast-excel&amp;utm_campaign=Badge_Grade)
-[![Total Downloads](https://poser.pugx.org/rap2hpoutre/fast-excel/downloads)](https://packagist.org/packages/rap2hpoutre/fast-excel)
+[![Version](https://poser.pugx.org/gleandroj/fast-excel/version?format=flat)](https://packagist.org/packages/gleandroj/fast-excel)
+[![License](https://poser.pugx.org/gleandroj/fast-excel/license?format=flat)](https://packagist.org/packages/gleandroj/fast-excel)
+[![Build Status](https://travis-ci.org/gleandroj/fast-excel.svg?branch=master)](https://travis-ci.org/gleandroj/fast-excel)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gleandroj/fast-excel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gleandroj/fast-excel/?branch=master)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bae32d91556e461fb7d0fd93495ec6aa)](https://www.codacy.com/gh/gleandroj/fast-excel/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gleandroj/fast-excel&amp;utm_campaign=Badge_Grade)
+[![Total Downloads](https://poser.pugx.org/gleandroj/fast-excel/downloads)](https://packagist.org/packages/gleandroj/fast-excel)
 
 Fast Excel import/export for Laravel, thanks to [Spout](https://github.com/box/spout).
 See [benchmarks](#benchmarks) below.
@@ -17,13 +17,13 @@ See [benchmarks](#benchmarks) below.
 Install via composer:
 
 ```
-composer require rap2hpoutre/fast-excel
+composer require gleandroj/fast-excel
 ```
 
 Export a Model to `.xlsx` file:
 
 ```php
-use Rap2hpoutre\FastExcel\FastExcel;
+use Gleandroj\FastExcel\FastExcel;
 use App\User;
 
 // Load users
@@ -101,7 +101,7 @@ $users = (new FastExcel)->import('file.xlsx', function ($line) {
 You may use FastExcel with the optional Facade. Add the following line to ``config/app.php`` under the ``aliases`` key.
 
 ````php
-'FastExcel' => Rap2hpoutre\FastExcel\Facades\FastExcel::class,
+'FastExcel' => Gleandroj\FastExcel\Facades\FastExcel::class,
 ````
 
 Using the Facade, you will not have access to the constructor. You may set your export data using the ``data`` method.

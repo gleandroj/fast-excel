@@ -1,11 +1,11 @@
 <?php
 
-namespace Rap2hpoutre\FastExcel\Tests;
+namespace Gleandroj\FastExcel\Tests;
 
 use Box\Spout\Common\Entity\Style\Color;
 use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
-use Rap2hpoutre\FastExcel\FastExcel;
-use Rap2hpoutre\FastExcel\SheetCollection;
+use Gleandroj\FastExcel\FastExcel;
+use Gleandroj\FastExcel\SheetCollection;
 
 /**
  * Class FastExcelTest.

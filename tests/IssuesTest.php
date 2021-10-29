@@ -1,11 +1,11 @@
 <?php
 
-namespace Rap2hpoutre\FastExcel\Tests;
+namespace Gleandroj\FastExcel\Tests;
 
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 use Illuminate\Support\Collection;
-use Rap2hpoutre\FastExcel\FastExcel;
-use Rap2hpoutre\FastExcel\SheetCollection;
+use Gleandroj\FastExcel\FastExcel;
+use Gleandroj\FastExcel\SheetCollection;
 
 /**
  * Class IssuesTest.

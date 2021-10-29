@@ -1,11 +1,12 @@
 <?php
 
-namespace Rap2hpoutre\FastExcel;
+namespace Gleandroj\FastExcel;
 
 use Box\Spout\Common\Entity\Style\Style;
 use Box\Spout\Common\Type;
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Generator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -104,7 +105,9 @@ trait Exportable
         $data = $this->transpose ? $this->transposeData() : ($this->data instanceof SheetCollection ? $this->data : collect([$this->data]));
 
         foreach ($data as $key => $collection) {
-            if ($collection instanceof Collection) {
+            if ($collection instanceof Builder) {
+                $this->writeRowsFromQueryChunked($writer, $collection, $callback);
+            } else if ($collection instanceof Collection) {
                 $this->writeRowsFromCollection($writer, $collection, $callback);
             } elseif ($collection instanceof Generator) {
                 $this->writeRowsFromGenerator($writer, $collection, $callback);
@@ -210,6 +213,28 @@ trait Exportable
             // Write rows (one by one).
             $writer->addRow(WriterEntityFactory::createRowFromArray($item->toArray(), $this->rows_style));
         }
+    }
+
+    private function writeRowsFromQueryChunked($writer, Builder $builder, ?callable $callback = null)
+    {
+        $builder->chunk(1000, function ($rows) use ($callback, $writer) {
+            foreach ($rows as $key => $item) {
+                // Apply callback
+                if ($callback) {
+                    $item = $callback($item);
+                }
+
+                // Prepare row (i.e remove non-string)
+                $item = $this->transformRow($item);
+
+                // Add header row.
+                if ($this->with_header && $key === 0) {
+                    $this->writeHeader($writer, $item);
+                }
+                // Write rows (one by one).
+                $writer->addRow(WriterEntityFactory::createRowFromArray($item->toArray(), $this->rows_style));
+            }
+        });
     }
 
     private function writeRowsFromArray($writer, array $array, ?callable $callback = null)
